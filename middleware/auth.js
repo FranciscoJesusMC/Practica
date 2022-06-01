@@ -1,25 +1,23 @@
-const jwt = require("jsonwebtoken");
+const jwt= require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 
 
-const getToken = (req,res,next)=>{
+const verifyToken = (req,res,next)=>{
     const token = req.header("token");
 
     if(!token){
-        res.status(403).json({
+        res.status(400).json({
             msg:"NOT TOKEN"
         })
     };
 
     try {
-        const decoded = jwt.verify(token,JWT_SECRET)
-
-        req.user = decoded.user
+        let decoded = jwt.verify(token,JWT_SECRET);
+        req.user= decoded.user;
         next();
     } catch (error) {
-        res.status(500).send("SERVER ERROR")
+        res.status(500).json("SEVER ERROR")
     }
-}
+};
 
-
-module.exports = getToken;
+module.exports = {verifyToken};
