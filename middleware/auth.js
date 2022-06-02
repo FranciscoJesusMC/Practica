@@ -16,7 +16,7 @@ const verifyToken = (req,res,next)=>{
         req.user= decoded.user;
         next();
     } catch (error) {
-        res.status(500).json("SEVER ERROR")
+        res.status(500).json("TOKEN_EXPIRED")
     }
 };
 
