@@ -5,12 +5,14 @@ const {validateCreateCategory,validateCategory} =require("../validators/category
 const {verifyToken} = require("../middleware/auth");
 const {verifyAdmi} = require("../middleware/admiAuth");
 
-
+//Quitamos las validaciones en registrar del token y admi
 router.post("/register",verifyToken,verifyAdmi,validateCreateCategory,createCategory);
 router.get("/all",getCategory);
 router.get("/:id",validateCategory,getCategoryById);
-router.put("/:id",verifyToken,verifyAdmi,validateCategory,validateCreateCategory,updateCategory);
-router.delete("/:id",verifyToken,verifyAdmi,validateCategory,deleteCategory);
+//quitamos las validaciones en actualizar del token y admi
+router.put("/:id",validateCategory,validateCreateCategory,updateCategory);
+//Quitamos las validaciones de eliminar de token y admi
+router.delete("/:id",validateCategory,deleteCategory);
 
 
 module.exports = router;

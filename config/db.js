@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const URL = process.env.URL;
+const URL = process.env.NODE_ENV=== "test" || "development" ? process.env.URL_TEST : process.env.URL;
 
 const dbConnectNoSql = ()=>{
     mongoose.connect(URL,{
@@ -9,7 +9,7 @@ const dbConnectNoSql = ()=>{
         if(error){
             console.log("CONEXION ERRONEA");
         }else{
-            console.log("CONEXION EXITOSA")
+            console.log(`CONEXION EXISOTA A ${URL}`)
         }
     })
 };

@@ -33,4 +33,6 @@ const validateLogin=[
 ];
 
 
+
+
 module.exports = {validateUser,validateLogin};

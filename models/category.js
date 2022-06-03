@@ -15,4 +15,6 @@ const categorySchema =  new mongoose.Schema(
 )
 
 categorySchema.plugin(mongooseDelete,{overrideMethdos:"all"});
-module.exports = mongoose.model("category",categorySchema);
+const Category = mongoose.model("category",categorySchema);
+
+module.exports = Category;

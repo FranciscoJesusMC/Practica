@@ -13,9 +13,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use("/api",require("./routes"));
 
-app.listen(PORT,()=>{
+const server = app.listen(PORT,()=>{
     console.log(`App corriendo en http://localhost:${PORT}`);
 });
 
 
 dbConnectNoSql();
+
+module.exports = {app,server};

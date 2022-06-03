@@ -12,8 +12,9 @@ const createProduct = (req,res)=>{
            return res.status(500).json({msg:"IMAGE_COULD_NOT_UPLOADED"})
         };
 
-        if(files.photo.type !== "image/jpeg" && files.photo.type !== "image/jpg" && files.photo.type !== "image/png"){
-            return res.status(500).json({msg:"FORMAT_NOT_VALID"})
+        if(files.photo.type !== "image/jpeg" && files.photo.type !== "image/jpg" && 
+            files.photo.type !== "image/png"){
+            return res.status(400).json({msg:"FORMAT_NOT_VALID"})
         };
 
         if(files.photo.size > 1000000){

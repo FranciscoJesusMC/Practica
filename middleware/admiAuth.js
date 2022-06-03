@@ -2,17 +2,20 @@ const User = require("../models/user");
 
 const verifyAdmi = async(req,res,next)=>{
     try {
-        const user = await User.findOne({_id:req.user.id});
 
+        const user = await User.findOne({_id: req.user.id});
+
+  
         if(user.role === 0){
-            res.status(400).json({msg:"ACCESS_DENIED"})
-        };
-
+            return res.status(403).json({
+                error:"Admin resosurces, access denied"
+            })
+        }
         next();
 
     } catch (error) {
         console.log(error);
-        res.status(500).json("ERROR SERVER")
+        res.status(500).json("SERVER_ERROR")
     }
 }
 
